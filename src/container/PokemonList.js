@@ -10,7 +10,6 @@ const PokemonList = () => {
     const data = await res.json();
 
     
-
       setCount(data.count);
 
       
@@ -43,17 +42,19 @@ const PokemonList = () => {
       </Row>
 
       <Row className="text-center my-5">
-        {pokemons.map((pokemon) => {
+        {pokemons.map((pokemon,index) => {
           return (
             <Col xs={{ size: 6 }} sm={{ size: 4 }} lg={{ size: 3 }} xl={{ size: 2 }} className="mb-3">
               <Card style={{ width: "18rem" }}>
-              <Card.Title>{pokemon.id}</Card.Title>
+              <Card.Header>{index+1}</Card.Header>
                 <Card.Img variant="top" src={pokemon.sprites.front_default} />
                 <Card.Body>
                   <Card.Title>{pokemon.name}</Card.Title>
-                  <NavLink  to={`detail/${pokemon.name}`}>
-                                        <Button outline className="w-100" color="primary">View</Button>
-                    </NavLink>
+                  <Card.Footer>
+                  <Card.Link href="/detail/{pokemon.name}">
+                          <Button className="w-100" variant="outline-primary">View</Button>
+                    </Card.Link>
+                  </Card.Footer>  
                 </Card.Body>
               </Card>
             </Col>
